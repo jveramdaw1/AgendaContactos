@@ -1,3 +1,4 @@
+package ut7.agenda.modelo;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -8,7 +9,7 @@ public class AgendaContactos {
 	public AgendaContactos() {
 
 	}
-
+	
 	public void añadirContacto() {
 
 	}
