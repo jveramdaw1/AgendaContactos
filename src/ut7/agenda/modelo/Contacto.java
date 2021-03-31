@@ -1,5 +1,5 @@
 package ut7.agenda.modelo;
-public class Contacto {
+public abstract class Contacto {
 	private String nombre;
 	private String apellidos;
 	private String telefono;
@@ -47,8 +47,46 @@ public class Contacto {
 
 	@Override
 	public int hashCode() {
-		return email.hashCode();
-
+		return nombre.hashCode() + apellidos.hashCode() + email.hashCode() * 11;
 	}
-
+	
+	public char getPrimeraLetra() {
+		char letra = getApellidos().charAt(0);
+		return letra;
+	}
+	
+	public boolean equals(Object obj) {
+		if(hashCode() == obj.hashCode()) {
+			return true;
+		}
+		return false;
+	}
+	
+	public int compareTo(Contacto c) {
+		if(apellidos.hashCode() < c.apellidos.hashCode()) {
+			return -1;
+		}
+		if(apellidos== c.apellidos) {
+			return 0;
+		}
+		return 1;
+	}
+	public int compareTo2(Contacto c) {
+		if(nombre.hashCode() < c.nombre.hashCode()) {
+			return -1;
+		}
+		if(nombre== c.nombre) {
+			return 0;
+		}
+		return 1;
+	}
+	
+	public abstract String getFirma();
+	
+	public String toString() {
+		return apellidos + ", " + nombre + "(" + Contacto.class.getSimpleName().toUpperCase() + ")\n" +
+				"Tfno: " + telefono + " | email: " + email + "\n";
+	}
+	
+	
 }
