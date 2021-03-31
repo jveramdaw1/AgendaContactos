@@ -43,7 +43,7 @@ public class Personal extends Contacto{
 	
 	@Override
 	public String toString() {
-		return this.getApellidos().toUpperCase() + ", " + this.getNombre().toUpperCase() + " (PERSONAL) \nTfno: " + this.getTelefono() + " | email: " + this.getEmail() + " \nFecha nacimiento: " + this.formatoFecha() + " \nRelación: " + this.getRelacion() + " \n";
+		return super.toString() + " \nFecha nacimiento: " + this.formatoFecha() + " \nRelación: " + this.getRelacion() + " \n";
 	}
 	
 	
