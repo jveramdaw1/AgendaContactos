@@ -3,19 +3,24 @@ package ut7.agenda.modelo;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Personal extends Contacto{
+public class Personal extends Contacto{ // Padre: Contacto
 
-	private LocalDate fecnac;
-	private Relacion relacion;
-	private String firma;
+	// Atributos
+	private LocalDate fecnac; // Fecha nacimiento
+	private Relacion relacion; // Relacion con el propietario
+	private String firma; // Firma fija para todos los contactos en personal
 	
-	public Personal(String nombre, String apellidos, String telefono, String email, LocalDate fecnac,
+	// Constructor
+	public Personal(String nombre, String apellidos, String telefono, String email, String fecnac,
 			Relacion relacion) {
 		super(nombre, apellidos, telefono, email);
-		this.fecnac = fecnac;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM. yyyy");
+		this.fecnac = LocalDate.parse(fecnac,formatter); // Recibe fecha nacimiento en string, pasar a LocalDate
 		this.relacion = relacion;
 		firma = "Un abrazo!!";
 	}
+	
+	//Getters y setters
 	public LocalDate getFecnac() {
 		return fecnac;
 	}
@@ -29,18 +34,22 @@ public class Personal extends Contacto{
 		this.relacion = relacion;
 	}
 	
-	public String getFirma() {
+	public String getFirmaEmail() {
 		return firma;
 	}
+	// Ya que firma no requiere cambios no tiene setter
 	
+	// comprobar si es su cumpleaños
 	public boolean esCumpleaños() {
 		return fecnac==LocalDate.now();
 	}
 	
+	// para pasar la fecha de nacimiento al string de patrón especificado
 	public String formatoFecha() {
 		return fecnac.format(DateTimeFormatter.ofPattern("dd MMM. yyyy")).toLowerCase();
 	}
 	
+	// Añade al toString padre los atributo de Personal
 	@Override
 	public String toString() {
 		return super.toString() + " \nFecha nacimiento: " + this.formatoFecha() + " \nRelación: " + this.getRelacion() + " \n";

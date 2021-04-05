@@ -166,7 +166,7 @@ public abstract class Contacto {
 	 * Accesor abstracto que deben implimentar todas las clases hijos
 	 *@return firma de cada contacto 
 	 */
-	public abstract String getFirma();
+	public abstract String getFirmaEmail();
 	
 	/**
 	 * Representacion textual del contacto 
