@@ -34,7 +34,7 @@ public class Personal extends Contacto{ // Padre: Contacto
 		this.relacion = relacion;
 	}
 	
-	public String getFirma() {
+	public String getFirmaEmail() {
 		return firma;
 	}
 	// Ya que firma no requiere cambios no tiene setter
