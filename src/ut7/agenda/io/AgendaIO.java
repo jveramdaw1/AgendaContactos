@@ -8,11 +8,16 @@ import ut7.agenda.modelo.*;
 public class AgendaIO {
 
 	public static void importar(AgendaContactos agenda) {
-
+		String[] contactos = obtenerLineasDatos();
+		for(int i = 0 ; i <contactos.length; i++) {
+			Contacto contacto = parsearLinea(contactos[i]);
+			//agenda.añadirContacto(contacto);
+		}
 	}
 
 	private static Contacto parsearLinea(String linea) {
-		return null;
+		String[] datosLinea = linea.split(",");
+		if()
 
 	}
 
