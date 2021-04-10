@@ -1,10 +1,13 @@
 package ut7.agenda.modelo;
 
 public class Profesional extends Contacto{
+	
+	//Atributos
 	private String nombreEmpresa;
 	private String mensaje;
 	
-	public Profesional(String nombreEmpresa) {
+	//Constructor
+	public Profesional(String nombre, String apellidos, String telefono, String email, String nombreEmpresa, String mensaje) {
 		super(nombre, apellidos, telefono, email);
 		char primeraLetra = nombreEmpresa.toUpperCase().charAt(0);
 		String restoNombre = nombreEmpresa.substring(1).toLowerCase();
@@ -24,6 +27,8 @@ public class Profesional extends Contacto{
 			return "Mis mejores deseos";
 			
 		}
+		
+		//Getters
 		public String getNombreEmpresa() {
 			return nombreEmpresa;
 		}
@@ -41,6 +46,9 @@ public class Profesional extends Contacto{
 			return super.toString() + "\nNombre de la empresa=" + nombreEmpresa + "\nMensaje=" + mensaje;
 		}
 		
+		public String getFirmaEmail() {
+			return null;
+		}
 		
 	
 	
