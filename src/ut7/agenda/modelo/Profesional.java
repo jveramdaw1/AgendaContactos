@@ -8,13 +8,19 @@ public class Profesional extends Contacto{
 	
 	//Constructor
 	public Profesional(String nombre, String apellidos, String telefono, String email, String nombreEmpresa, String mensaje) {
+		//Atributos clase Contacto
 		super(nombre, apellidos, telefono, email);
+		//Separador para obtener la primera letra del nombre de la empresa en mayuscula
 		char primeraLetra = nombreEmpresa.toUpperCase().charAt(0);
 		String restoNombre = nombreEmpresa.substring(1).toLowerCase();
 		this.nombreEmpresa = primeraLetra + restoNombre;
+		//Atributo que obtiene en mensaje aleatorio
 		this.mensaje = obtenerMensaje();
 		
 	}
+	/*
+	 * Metodo que obtiene un valor aleatorio y asigna un mensaje para este
+	 */
 		public String obtenerMensaje(){
 			int valorMensaje = 0;
 			valorMensaje = (int)(Math.random() * 3 + 1);
