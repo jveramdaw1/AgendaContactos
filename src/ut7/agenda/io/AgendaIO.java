@@ -1,11 +1,10 @@
 package ut7.agenda.io;
-
 import ut7.agenda.modelo.*;
 
 /**
  * Utilidades para cargar la agenda
  */
-public class AgendaIO {
+public class AgendaIO{
 
 	public static void importar(AgendaContactos agenda) {
 		String[] contactos = obtenerLineasDatos();
@@ -17,7 +16,22 @@ public class AgendaIO {
 
 	private static Contacto parsearLinea(String linea) {
 		String[] datosLinea = linea.split(",");
-		if()
+		
+		String nombre = datosLinea[1].trim();
+		String apellidos = datosLinea[2].trim();
+		String telefono = datosLinea[3].trim();
+		String email = datosLinea[4].trim();
+		
+		int num = datosLinea[0].trim().charAt(0);
+			if(num == 1) {
+				String empresa = datosLinea[5].trim();
+				return new Profesional(nombre, apellidos, telefono, email, empresa, empresa);
+			}
+			else {
+				String fecnac = datosLinea[5].trim();
+				Relacion relacion = datosLinea[6].trim();
+				return new Personal(nombre, apellidos, telefono, email, fecnac, relacion);
+			}
 
 	}
 
