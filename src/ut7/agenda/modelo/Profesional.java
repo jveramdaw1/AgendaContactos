@@ -4,57 +4,69 @@ public class Profesional extends Contacto{
 	
 	//Atributos
 	private String nombreEmpresa;
-	private String mensaje;
+	private String[] firmaEmail = {"Atentamente", "Saludos coordiales", "Mis mejores deseos"};
 	
 	//Constructor
-	public Profesional(String nombre, String apellidos, String telefono, String email, String nombreEmpresa, String mensaje) {
+	public Profesional(String nombre, String apellidos, String telefono, String email, String nombreEmpresa) {
 		//Atributos clase Contacto
 		super(nombre, apellidos, telefono, email);
 		//Separador para obtener la primera letra del nombre de la empresa en mayuscula
-		char primeraLetra = nombreEmpresa.toUpperCase().charAt(0);
-		String restoNombre = nombreEmpresa.substring(1).toLowerCase();
-		this.nombreEmpresa = primeraLetra + restoNombre;
-		//Atributo que obtiene en mensaje aleatorio
-		this.mensaje = obtenerMensaje();
+		this.nombreEmpresa = obtenerNombre(nombreEmpresa);
 		
 	}
 	/*
-	 * Metodo que obtiene un valor aleatorio y asigna un mensaje para este
+	 * Uso este metodo privado para devolver el nombre de la empresa correctamente
+	 * @param el nombre de la empresa 
+	 * @return el nombre de la empresa  con las palabras capitalizadas
 	 */
-		public String obtenerMensaje(){
-			int valorMensaje = 0;
-			valorMensaje = (int)(Math.random() * 3 + 1);
-			if(valorMensaje == 1) {	
-				return "Atentamente";
-			}
-			else if(valorMensaje == 2) {
-				return "Saludos coordiales";
-			}
-			return "Mis mejores deseos";
-			
-		}
+	private String obtenerNombre(String nombreEmpresa){
+		nombreEmpresa = nombreEmpresa.trim();
+		String[] nombre = nombreEmpresa.split(" ");
+		nombreEmpresa = " ";
+		char primeraLetra = ' ';
+		String restoNombre = " ";
 		
-		//Getters
+		for(int i = 0; i < nombre.length; i++) {
+			primeraLetra = nombre[i].toUpperCase().charAt(0);
+			restoNombre = nombre[i].substring(1).toLowerCase();
+			nombreEmpresa += primeraLetra + restoNombre + " ";
+		}
+		return nombreEmpresa.trim();
+	}
+	
+		//GETTERS
+	
+		/*
+		 * @return el nombre de la empresa correctamente
+		 */
 		public String getNombreEmpresa() {
 			return nombreEmpresa;
 		}
+		
+		/*
+		 * @return el mensaje del email aleatoriamente
+		 */
+		public String getFirmaEmail() {
+			return firmaEmail[(int)(Math.random() * 3)];
+		}
+		
+		//SETTER
+		
+		/*
+		 * @param el nuevo nombre de la empresa
+		 * @return el nombre de la empresa asignado correctamente
+		 */
 		public void setNombreEmpresa(String nombreEmpresa) {
 			this.nombreEmpresa = nombreEmpresa;
 		}
-		public String getMensaje() {
-			return mensaje;
-		}
-		public void setMensaje(String mensaje) {
-			this.mensaje = mensaje;
-		}
 		
+		/*
+		 * @return todos los datos del contacto profesional
+		 */
 		public String toString() {
-			return super.toString() + "\nNombre de la empresa=" + nombreEmpresa + "\nMensaje=" + mensaje;
+			return super.toString() + "\nNombre de la empresa: " + nombreEmpresa + "\nFirma email: " + getFirmaEmail();
 		}
 		
-		public String getFirmaEmail() {
-			return null;
-		}
 		
 	
 	
