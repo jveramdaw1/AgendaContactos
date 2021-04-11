@@ -4,8 +4,14 @@ import ut7.agenda.modelo.*;
 /**
  * Utilidades para cargar la agenda
  */
-public class AgendaIO{
 
+public class AgendaIO{
+	
+	/*
+	 * Guarda la información del metodo obtenerLineasDatos y añade la información a esta
+	 * @param agenda de la clase AgendaContactos
+	 * @return 
+	 */
 	public static void importar(AgendaContactos agenda) {
 		String[] contactos = obtenerLineasDatos();
 		for(int i = 0 ; i <contactos.length; i++) {
@@ -13,7 +19,11 @@ public class AgendaIO{
 			//agenda.añadirContacto(contacto);
 		}
 	}
-
+	/*
+	 * Guarda cada dato de cada contacto dentro de un Array  
+	 * @param cada linea guardada en el metodo anterior
+	 * @return un array de un nuevo contacto con su respectiva información
+	 */
 	private static Contacto parsearLinea(String linea) {
 		String[] datosLinea = linea.split(",");
 		
@@ -24,15 +34,14 @@ public class AgendaIO{
 		
 		int num = datosLinea[0].trim().charAt(0);
 			if(num == 1) {
-				String empresa = datosLinea[5].trim();
-				return new Profesional(nombre, apellidos, telefono, email, empresa, empresa);
+				String nombreEmpresa = datosLinea[5].trim();
+				return new Profesional(nombre, apellidos, telefono, email, nombreEmpresa);
 			}
 			else {
-				String fecnac = datosLinea[5].trim();
-				Relacion relacion = datosLinea[6].trim();
-				return new Personal(nombre, apellidos, telefono, email, fecnac, relacion);
+				String fechaNac = datosLinea[5].trim();
+				Relacion relacion = Relacion.valueOf(datosLinea[6].trim());
+				return new Personal(nombre, apellidos, telefono, email, fechaNac, relacion);
 			}
-
 	}
 
 	/**
