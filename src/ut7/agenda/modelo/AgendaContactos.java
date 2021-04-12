@@ -1,4 +1,5 @@
-package ut7.agenda.modelo;
+ package ut7.agenda.modelo;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -29,8 +30,19 @@ public class AgendaContactos {
 
 	@Override
 	public String toString() {
-
-		return null;
+		String salida = "";
+		for(char llave : agenda.keySet()) {
+			salida += llave + "(" + agenda.get(llave).size() + " contacto/s)\n"
+					+ "---------------";
+			Iterator<Character> it = (Iterator<Character>) agenda.keySet();
+			while(it.hasNext()) {
+				Iterator<Contacto> it2 = agenda.get(it.next()).iterator();
+				while(it2.hasNext()) {
+					salida += it2.next().toString();
+				}
+			}
+		}
+		return salida;
 	}
 
 	public List<Contacto> buscarContactos(String texto) {
