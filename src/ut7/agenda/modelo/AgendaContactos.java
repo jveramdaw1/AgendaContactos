@@ -1,17 +1,22 @@
 package ut7.agenda.modelo;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 public class AgendaContactos {
 	private Map<Character, Set<Contacto>> agenda;
 
 	public AgendaContactos() {
-
+		this.agenda = new TreeMap<Character, Set<Contacto>>();
 	}
 	
-	public void añadirContacto() {
-
+	public void añadirContacto(Contacto con) {
+		LinkedHashSet<Contacto> tes = new LinkedHashSet<>();
+		
+		agenda.put(con.getPrimeraLetra(),  
+				)
 	}
 
 	public void contactosEnLetra() {
