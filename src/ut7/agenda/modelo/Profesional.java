@@ -64,7 +64,7 @@ public class Profesional extends Contacto{
 		 * @return todos los datos del contacto profesional
 		 */
 		public String toString() {
-			return super.toString() + "\nNombre de la empresa: " + nombreEmpresa + "\nFirma email: " + getFirmaEmail();
+			return super.toString() + "Empresa: " + nombreEmpresa + "\n";
 		}
 		
 		

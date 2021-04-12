@@ -16,7 +16,7 @@ public class TestProfesionalPersonal {
 				"678895433", "iacostamar@gmail.com", "publicidad holdings"));
 		addContacto(profesionales, new Profesional("Isabel", "Acosta Mendioroz",
 				"678895433", "iacostamen@gmail.com", "walden estrella"));
-		System.out.println("Contactos profesionales");
+		System.out.println("Contactos profesionales\n");
 		mostrarContactos(profesionales);
 
 		separador();
@@ -50,7 +50,7 @@ public class TestProfesionalPersonal {
 		addContacto(personales,
 				new Personal("Ignacio", "Anto roth", "688912799",
 						"iantoroth@gmail.com", "11/11/1969", Relacion.PADRE));
-		System.out.println("Contactos personales");
+		System.out.println("Contactos personales\n");
 		mostrarContactos(personales);
 
 		separador();
@@ -82,7 +82,7 @@ public class TestProfesionalPersonal {
 			Contacto contacto) {
 
 		int pos = contactos.indexOf(contacto);
-		System.out.println("El contacto\n" + contacto);
+		System.out.println("El contacto:\n" + contacto);
 		if (pos == -1) {
 			System.out.println("no existe\n");
 		} else {
@@ -91,7 +91,7 @@ public class TestProfesionalPersonal {
 	}
 
 	private static void mostrarFirmaEmail(Contacto contacto) {
-		System.out.println("Mostrando la firma del email del contacto ...");
+		System.out.println("Mostrando la firma del email del contacto ...\n");
 		System.out.println(contacto);
 		System.out.println(contacto.getFirmaEmail());
 
@@ -99,7 +99,7 @@ public class TestProfesionalPersonal {
 
 	private static void separador() {
 		System.out.println(
-				"------------------------------------------------------------");
+				"------------------------------------------------------------\n");
 
 	}
 

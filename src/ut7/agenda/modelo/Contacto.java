@@ -172,8 +172,12 @@ public abstract class Contacto {
 	 * Representacion textual del contacto 
 	 */
 	public String toString() {
-		return apellidos + ", " + nombre + "(" + Contacto.class.getSimpleName().toUpperCase() + ")\n" +
-				"Tfno: " + telefono + " | email: " + email + "\n";
+		if(this.getClass().equals(Personal.class)) {
+			return apellidos + ", " + nombre + " (" + Personal.class.getSimpleName().toUpperCase() + ")\n" +
+					"Tfno: " + telefono + " | email: " + email + "\n";
+		}
+		return apellidos + ", " + nombre + " (" + Profesional.class.getSimpleName().toUpperCase() + ")\n" +
+		"Tfno: " + telefono + " | email: " + email + "\n";
 	}
 	
 	

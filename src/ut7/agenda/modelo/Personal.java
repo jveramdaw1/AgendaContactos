@@ -52,7 +52,7 @@ public class Personal extends Contacto{ // Padre: Contacto
 	// Añade al toString padre los atributo de Personal
 	@Override
 	public String toString() {
-		return super.toString() + " \nFecha nacimiento: " + this.formatoFecha() + " \nRelación: " + this.getRelacion() + " \n"; // Añade fecha nacimiento y relación
+		return super.toString() + "Fecha nacimiento: " + this.formatoFecha() + "\nRelación: " + this.getRelacion() + "\n"; // Añade fecha nacimiento y relación
 	}
 	
 	
