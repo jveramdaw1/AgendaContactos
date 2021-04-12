@@ -14,7 +14,7 @@ public class Personal extends Contacto{ // Padre: Contacto
 	public Personal(String nombre, String apellidos, String telefono, String email, String fecnac,
 			Relacion relacion) {
 		super(nombre, apellidos, telefono, email); // Del super
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM. yyyy"); // Formato que debería estar el String
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Formato que debería estar el String
 		this.fecnac = LocalDate.parse(fecnac,formatter); // Recibe fecha nacimiento en String, pasar a LocalDate
 		this.relacion = relacion; // Añade relación
 		firma = "Un abrazo!!"; // Firma fija
@@ -46,7 +46,7 @@ public class Personal extends Contacto{ // Padre: Contacto
 	
 	// para pasar la fecha de nacimiento al string de patrón especificado
 	public String formatoFecha() {
-		return fecnac.format(DateTimeFormatter.ofPattern("dd MMM. yyyy")).toLowerCase(); // Pasa la fecha a String con el patrón especificado y en minúsculas
+		return fecnac.format(DateTimeFormatter.ofPattern("dd MMM yyyy")); // Pasa la fecha a String con el patrón especificado y en minúsculas
 	}
 	
 	// Añade al toString padre los atributo de Personal
