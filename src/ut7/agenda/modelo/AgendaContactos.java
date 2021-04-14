@@ -1,4 +1,7 @@
  package ut7.agenda.modelo;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -13,11 +16,19 @@ public class AgendaContactos {
 		this.agenda = new TreeMap<Character, Set<Contacto>>();
 	}
 	
-	public void añadirContacto(Contacto con) {
-		LinkedHashSet<Contacto> tes = new LinkedHashSet<>();
+	public void añadirContacto(Contacto con) { // Adrian
 		
-		agenda.put(con.getPrimeraLetra(),  
-				)
+		if (agenda.containsKey(con.getPrimeraLetra())==false) { // Comprueba si existe una clave que coincida con la inicial del apellido
+			LinkedHashSet<Contacto> tes = new LinkedHashSet<>(); // Si no existe, la crea
+			tes.add(con);
+			agenda.put(con.getPrimeraLetra(), tes);
+		}
+		else {
+			LinkedHashSet<Contacto> hsa = (LinkedHashSet<Contacto>) agenda.get(con.getPrimeraLetra()); // Si existe, coge el set de contactos de dicha clave en una nueva, añade el nuevo contacto y sustituye a la vieja con la nueva  
+			hsa.add(con);
+			agenda.put(con.getPrimeraLetra(), hsa);
+		}
+		
 	}
 
 	public void contactosEnLetra() {
@@ -51,9 +62,20 @@ public class AgendaContactos {
 
 	}
 
-	public List<Personal> personalesEnLetra(char letra) {
+	public ArrayList<Personal> personalesEnLetra(char letra) { // Adrian
 
-		return null;
+		ArrayList<Personal> ray = new ArrayList<>(); // Crea arraylist vacio
+		if (agenda.containsKey(letra)) { // Comprueba si la letra existe entre las claves
+			for (Contacto con : agenda.get(letra)) { // Si existe, por cada contacto en dicha letra
+				if ( ! (con instanceof Personal) ) { // se comprueba que sea clase Personal
+					ray.add((Personal) con); // Si lo es, se añade al arraylist
+				}
+			}
+		}
+		else { // Si clave no existe
+			return null; // Devuelve null
+		}
+		return ray; // Devuelve el arraylist
 	}
 
 	public List<Personal> felicitar() {
@@ -65,10 +87,34 @@ public class AgendaContactos {
 
 	}
 
-	public List<Personal> personalesOrdenadosPorFechaNacimiento(char letra) {
+	public ArrayList<Personal> personalesOrdenadosPorFechaNacimiento(char letra) { // Adrian
 
-		return null;
+		ArrayList<Personal> ray = new ArrayList<>(); // Crea arraylist vacio
+		if (agenda.containsKey(letra)) { // Comprueba si la letra existe entre las claves
+			for (Contacto con : agenda.get(letra)) { // Si existe, por cada contacto en dicha letra
+				if ( ! (con instanceof Personal) ) { // se comprueba que sea clase Personal
+					ray.add((Personal) con); // Si lo es, se añade al arraylist
+				}
+			}
+		}
+		else { // Si clave no existe
+			return null; // Devuelve null
+		}
+		
+		Comparator<Personal> comfecnac = new Comparator<>() { // Para ordenar fechas de nacimiento con comparator
+		    @Override
+		    public int compare(Personal p1, Personal p2) {
+		        return p1.getFecnac().compareTo(p2.getFecnac());
+		    }
+		};
+		
+		Collections.sort(ray, comfecnac); //Ordenar la arraylist con el comparator
+		
+		
+		return ray; // Devuelve el arraylist
 
 	}
+	
+	
 
 }
