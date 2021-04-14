@@ -11,9 +11,11 @@ import java.util.TreeMap;
 
 public class AgendaContactos {
 	private Map<Character, Set<Contacto>> agenda;
+	private int contador;
 
 	public AgendaContactos() {
 		this.agenda = new TreeMap<Character, Set<Contacto>>();
+		this.contador = 0;
 	}
 	
 	public void añadirContacto(Contacto con) { // Adrian
@@ -22,6 +24,7 @@ public class AgendaContactos {
 			LinkedHashSet<Contacto> tes = new LinkedHashSet<>(); // Si no existe, la crea
 			tes.add(con);
 			agenda.put(con.getPrimeraLetra(), tes);
+			contador ++;
 		}
 		else {
 			LinkedHashSet<Contacto> hsa = (LinkedHashSet<Contacto>) agenda.get(con.getPrimeraLetra()); // Si existe, coge el set de contactos de dicha clave en una nueva, añade el nuevo contacto y sustituye a la vieja con la nueva  
@@ -35,8 +38,8 @@ public class AgendaContactos {
 
 	}
 
-	public void totalContactos() {
-
+	public int totalContactos() {
+		return contador;
 	}
 
 	@Override
@@ -55,10 +58,18 @@ public class AgendaContactos {
 		}
 		return salida;
 	}
-
+	/*
+	 * 
+	 */
 	public List<Contacto> buscarContactos(String texto) {
+		ArrayList <Contacto> contactos = new ArrayList<>();
+		for(Contacto contacto : contactos) {
+			if(contacto.getNombre().contains(texto) || contacto.getApellidos().contains(texto)) {
+				contactos.add(contacto);
+			}
+		}
 
-		return null;
+		return contactos;
 
 	}
 
