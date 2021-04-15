@@ -1,5 +1,11 @@
 package ut7.agenda.modelo;
 
+/**
+ * @version 1.0,
+ * @author Jhon Vera, Diana Peralta, Adrian Vitoria
+ * Representacion de un conctacto personal de la agenda
+ */ 
+
 public class Profesional extends Contacto{
 	
 	//Atributos

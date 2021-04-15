@@ -2,8 +2,10 @@ package ut7.agenda.io;
 import ut7.agenda.modelo.*;
 
 /**
- * Utilidades para cargar la agenda
- */
+ * @version 1.0,
+ * @author Jhon Vera, Diana Peralta, Adrian Vitoria
+ * Lee una liniea de datos para agregarlos a la agenda.
+ */ 
 
 public class AgendaIO{
 	
@@ -13,9 +15,9 @@ public class AgendaIO{
 	 * @return 
 	 */
 	public static void importar(AgendaContactos agenda) {
-		String[] contactos = obtenerLineasDatos();
-		for(int i = 0 ; i <contactos.length; i++) {
-			Contacto contacto = parsearLinea(contactos[i]);
+		for(int i = 0 ; i <obtenerLineasDatos().length; i++) {
+			Contacto contacto = parsearLinea(obtenerLineasDatos()[i]);
+			agenda.añadirContacto(contacto);
 			//agenda.añadirContacto(contacto);
 		}
 	}
@@ -32,14 +34,13 @@ public class AgendaIO{
 		String telefono = datosLinea[3].trim();
 		String email = datosLinea[4].trim();
 		
-		int num = datosLinea[0].trim().charAt(0);
-			if(num == 1) {
+			if(Integer.valueOf(datosLinea[0].trim()) == 1) {
 				String nombreEmpresa = datosLinea[5].trim();
 				return new Profesional(nombre, apellidos, telefono, email, nombreEmpresa);
 			}
 			else {
 				String fechaNac = datosLinea[5].trim();
-				Relacion relacion = Relacion.valueOf(datosLinea[6].trim());
+				Relacion relacion = Relacion.valueOf(datosLinea[6].trim().toUpperCase());
 				return new Personal(nombre, apellidos, telefono, email, fechaNac, relacion);
 			}
 	}

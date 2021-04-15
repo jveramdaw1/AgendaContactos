@@ -1,7 +1,14 @@
+
 package ut7.agenda.modelo;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+/**
+ * @version 1.0,
+ * @author Jhon Vera, Diana Peralta, Adrian Vitoria
+ * Representacion de un conctacto Personal de la agenda
+ */ 
 
 public class Personal extends Contacto{ // Padre: Contacto
 
@@ -41,11 +48,11 @@ public class Personal extends Contacto{ // Padre: Contacto
 	
 	// comprobar si es su cumpleaños
 	public boolean esCumpleaños() {
-		return fecnac==LocalDate.now(); //Compara con dia actual
+		return fecnac.getDayOfMonth() == LocalDate.now().getDayOfMonth() && fecnac.getMonthValue() == LocalDate.now().getMonthValue(); //Compara con dia actual
 	}
 	
 	// para pasar la fecha de nacimiento al string de patrón especificado
-	public String formatoFecha() {
+	private String formatoFecha() {
 		return fecnac.format(DateTimeFormatter.ofPattern("dd MMM yyyy")); // Pasa la fecha a String con el patrón especificado y en minúsculas
 	}
 	

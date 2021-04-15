@@ -4,6 +4,12 @@ import java.util.List;
 
 import ut7.agenda.modelo.*;
 
+/**
+ * @version 1.0,
+ * @author Jhon Vera, Diana Peralta, Adrian Vitoria
+ * Clases para probar las clases Contacto,Profesiona, Personal.
+ */ 
+
 public class TestProfesionalPersonal {
 
 	public static void main(String[] args) {

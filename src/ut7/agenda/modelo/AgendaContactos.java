@@ -8,14 +8,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-
+/**
+ * @version 1.0,
+ * @author Jhon Vera, Diana Peralta, Adrian Vitoria
+ * Simula una agenda de contactos 
+ */ 
 public class AgendaContactos {
 	private Map<Character, Set<Contacto>> agenda;
 	private int contador;
 
 	public AgendaContactos() {
 		this.agenda = new TreeMap<Character, Set<Contacto>>();
-		this.contador = 0;
 	}
 	
 	public void añadirContacto(Contacto con) { // Adrian
@@ -24,7 +27,6 @@ public class AgendaContactos {
 			LinkedHashSet<Contacto> tes = new LinkedHashSet<>(); // Si no existe, la crea
 			tes.add(con);
 			agenda.put(con.getPrimeraLetra(), tes);
-			contador ++;
 		}
 		else {
 			LinkedHashSet<Contacto> hsa = (LinkedHashSet<Contacto>) agenda.get(con.getPrimeraLetra()); // Si existe, coge el set de contactos de dicha clave en una nueva, añade el nuevo contacto y sustituye a la vieja con la nueva  
@@ -39,33 +41,38 @@ public class AgendaContactos {
 	}
 
 	public int totalContactos() {
+		int contador = 0;
+		for(char key : agenda.keySet()) {
+			contador += agenda.get(key).size();
+		}
 		return contador;
 	}
 
 	@Override
 	public String toString() {
 		String salida = "";
-		for(char llave : agenda.keySet()) {
-			salida += llave + "(" + agenda.get(llave).size() + " contacto/s)\n"
-					+ "---------------";
-			Iterator<Character> it = (Iterator<Character>) agenda.keySet();
+		for(char key : agenda.keySet()) {
+			salida += key + " (" + agenda.get(key).size() + " contacto/s)\n"
+					+ "---------------\n";
+			Iterator<Contacto> it = agenda.get(key).iterator();
 			while(it.hasNext()) {
-				Iterator<Contacto> it2 = agenda.get(it.next()).iterator();
-				while(it2.hasNext()) {
-					salida += it2.next().toString();
-				}
+				salida += it.next().toString() + "\n";
 			}
 		}
-		return salida;
+		return salida + "\n("+ totalContactos() + " contacto/s)";
 	}
 	/*
 	 * 
 	 */
 	public List<Contacto> buscarContactos(String texto) {
 		ArrayList <Contacto> contactos = new ArrayList<>();
-		for(Contacto contacto : contactos) {
-			if(contacto.getNombre().contains(texto) || contacto.getApellidos().contains(texto)) {
-				contactos.add(contacto);
+		for(char key : agenda.keySet()) {
+			Iterator<Contacto> it = agenda.get(key).iterator();
+			while(it.hasNext()) {
+				Contacto temp = it.next();
+				if(temp.getNombre().contains(texto.toUpperCase()) || temp.getApellidos().contains(texto.toUpperCase())) {
+					contactos.add(temp);
+				}
 			}
 		}
 
@@ -90,12 +97,42 @@ public class AgendaContactos {
 	}
 
 	public List<Personal> felicitar() {
-
-		return null;
+		ArrayList<Personal> cumple = new ArrayList<Personal>();
+		for(char key : agenda.keySet()) {
+			Iterator<Contacto> it = agenda.get(key).iterator();
+			while(it.hasNext()) {
+				Contacto temp = it.next();
+				if(temp.getClass().equals(Personal.class)) {
+					Personal p = (Personal)temp;
+					if(p.esCumpleaños() == true) {
+						cumple.add(p);
+					}
+				}
+			}
+		}
+		return cumple;
 	}
 
-	public void personalesPorRelacion() {
-
+	public Map<Relacion,List<String>> personalesPorRelacion() {
+		TreeMap<Relacion,List<String>> relacion = new TreeMap<Relacion,List<String>>();
+		for(char key : agenda.keySet()) {
+			Iterator<Contacto> it = agenda.get(key).iterator();
+			while(it.hasNext()) {
+				Contacto temp = it.next();
+				if(temp.getClass().equals(Personal.class)) {
+					Personal p = (Personal)temp;
+					if(relacion.containsKey(p.getRelacion()) == true) {
+						relacion.get(p.getRelacion()).add(p.getApellidos() + " " + p.getNombre());
+					}
+					else {
+						List<String> nom = new ArrayList<String>();
+						nom.add(p.getApellidos() + " " + p.getNombre());
+						relacion.put(p.getRelacion(), nom);
+					}
+				}
+			}
+		}
+		return relacion;
 	}
 
 	public ArrayList<Personal> personalesOrdenadosPorFechaNacimiento(char letra) { // Adrian

@@ -6,6 +6,12 @@ import java.util.Map;
 import ut7.agenda.io.AgendaIO;
 import ut7.agenda.modelo.*;
 
+/**
+ * @version 1.0,
+ * @author Jhon Vera, Diana Peralta, Adrian Vitoria
+ * Main para probar todos los metodos de la clase AgendaContactos
+ */  
+
 public class TestAgenda {
 
 	public static void main(String[] args) {
@@ -13,7 +19,6 @@ public class TestAgenda {
 		AgendaIO.importar(agenda);
 		System.out.println(agenda);
 		separador();
-
 		buscarContactos(agenda, "acos");
 		separador();
 
@@ -37,7 +42,7 @@ public class TestAgenda {
 
 	private static void buscarContactos(AgendaContactos agenda, String texto) {
 		List<Contacto> resultado = agenda.buscarContactos(texto);
-		System.out.println("Contactos que contienen \"" + texto + "\"");
+		System.out.println("Contactos que contienen \"" + texto + "\"" + "\n");
 		if (resultado.isEmpty()) {
 			System.out.println("No hay contactos coincidentes");
 		} else {
