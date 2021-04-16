@@ -18,7 +18,7 @@ public class AgendaIO{
 		for(int i = 0 ; i <obtenerLineasDatos().length; i++) {
 			Contacto contacto = parsearLinea(obtenerLineasDatos()[i]);
 			agenda.añadirContacto(contacto);
-			//agenda.añadirContacto(contacto);
+			agenda.añadirContacto(contacto);
 		}
 	}
 	/*
