@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 /**
  * @version 1.0,
  * @author Jhon Vera, Diana Peralta, Adrian Vitoria
@@ -35,11 +36,23 @@ public class AgendaContactos {
 		}
 		
 	}
-
-	public void contactosEnLetra() {
-
+	/*
+	 * Busca todos los contactos de la agenda, y todos los que empiezen por dicha letra son almacenados en el treeSet
+	 * @param la letra de la coleccion Set que se busca
+	 * @return Un conjunto set de la letra buscada
+	 */
+	private
+	public Set<Contacto> contactosEnLetra(char letra) {
+		Set <Contacto> contactos = new TreeSet<Contacto>();
+			contactos.addAll(agenda.get(letra));
+			return contactos;
 	}
-
+	
+	/*
+	 * Cuenta todos los contactos que existen en la agenda
+	 * @return enumero de contactos que hay
+	 */
+	private
 	public int totalContactos() {
 		int contador = 0;
 		for(char key : agenda.keySet()) {
@@ -62,8 +75,11 @@ public class AgendaContactos {
 		return salida + "\n("+ totalContactos() + " contacto/s)";
 	}
 	/*
-	 * 
+	 * Compara todos los contactos de la agenda y compara si el parametro indroducido coincide con alguno
+	 * @param el string que sera buscado entre los contactos
+	 * @return los contactos que se coincidan con el texto
 	 */
+	private
 	public List<Contacto> buscarContactos(String texto) {
 		ArrayList <Contacto> contactos = new ArrayList<>();
 		for(char key : agenda.keySet()) {
