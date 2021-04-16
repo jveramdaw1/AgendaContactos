@@ -14,14 +14,21 @@ import java.util.TreeSet;
  * @author Jhon Vera, Diana Peralta, Adrian Vitoria
  * Simula una agenda de contactos 
  */ 
+
 public class AgendaContactos {
+	//Atributos
 	private Map<Character, Set<Contacto>> agenda;
 	private int contador;
-
+	
+	//Constructor
 	public AgendaContactos() {
 		this.agenda = new TreeMap<Character, Set<Contacto>>();
 	}
 	
+	/**
+	 * Dado un contacto lo añade a la Agenda
+	 * @param Contacto que se va añadir  
+	 */
 	public void añadirContacto(Contacto con) { // Adrian
 		
 		if (agenda.containsKey(con.getPrimeraLetra())==false) { // Comprueba si existe una clave que coincida con la inicial del apellido
@@ -36,58 +43,62 @@ public class AgendaContactos {
 		}
 		
 	}
-	/*
-	 * Busca todos los contactos de la agenda, y todos los que empiezen por dicha letra son almacenados en el treeSet
+	
+	/**
+	 * Dada una letra se devuelve un conjunto (Set) de contactos en esa letra
 	 * @param la letra de la coleccion Set que se busca
-	 * @return Un conjunto set de la letra buscada
+	 * @return Un conjunto set con los contactos de la letra buscada
 	 */
-
 	public Set<Contacto> contactosEnLetra(char letra) {
-		Set <Contacto> contactos = new TreeSet<Contacto>();
-			contactos.addAll(agenda.get(letra));
-			return contactos;
+		Set <Contacto> contactos = new TreeSet<Contacto>(); //Crea un lista Set vacia
+			contactos.addAll(agenda.get(letra)); // Añade a la lista los contactos de la respectiva letra
+			return contactos; 
 	}
 	
-	/*
-	 * Cuenta todos los contactos que existen en la agenda
+	/**
+	 * Devuelve el nº total de contactos en la agenda
 	 * @return enumero de contactos que hay
 	 */
 
 	public int totalContactos() {
-		int contador = 0;
+		int contador = 0; // crea un contador a 0 
 		for(char key : agenda.keySet()) {
-			contador += agenda.get(key).size();
+			contador += agenda.get(key).size(); // suma la contidad de contactos que tenga la clave
 		}
 		return contador;
 	}
 
+	/**
+	 * Devuelve la representacion textual de la agenda
+	 * @return La forma en la cual se quiere que se muestre la agenda
+	 */
 	@Override
 	public String toString() {
-		String salida = "";
+		String salida = "";//Crea una variable de String local vacia
 		for(char key : agenda.keySet()) {
 			salida += key + " (" + agenda.get(key).size() + " contacto/s)\n"
-					+ "---------------\n";
-			Iterator<Contacto> it = agenda.get(key).iterator();
+					+ "---------------\n"; //Agrega a la cantidad total de contactos a la variable
+			Iterator<Contacto> it = agenda.get(key).iterator(); // crea un iterador
 			while(it.hasNext()) {
-				salida += it.next().toString() + "\n";
+				salida += it.next().toString() + "\n";//Usa el toString de contactos para agregarlo ala varible
 			}
 		}
 		return salida + "\n("+ totalContactos() + " contacto/s)";
 	}
-	/*
-	 * Compara todos los contactos de la agenda y compara si el parametro indroducido coincide con alguno
+	
+	/**
+	 * Devuelve una (ArryList) con todos los contactos que incluyan el texto indicado
 	 * @param el string que sera buscado entre los contactos
-	 * @return los contactos que se coincidan con el texto
+	 * @return ArrayList con los contactos encontrados
 	 */
-
 	public List<Contacto> buscarContactos(String texto) {
-		ArrayList <Contacto> contactos = new ArrayList<>();
+		ArrayList <Contacto> contactos = new ArrayList<>();//Crea una ArrayList vacio
 		for(char key : agenda.keySet()) {
-			Iterator<Contacto> it = agenda.get(key).iterator();
+			Iterator<Contacto> it = agenda.get(key).iterator();// Crea un Iterador
 			while(it.hasNext()) {
-				Contacto temp = it.next();
-				if(temp.getNombre().contains(texto.toUpperCase()) || temp.getApellidos().contains(texto.toUpperCase())) {
-					contactos.add(temp);
+				Contacto temp = it.next();//Guarda un contacto en la variable local
+				if(temp.getNombre().contains(texto.toUpperCase()) || temp.getApellidos().contains(texto.toUpperCase())) {//Verifica que el nombre o apellidos del contacto contenga el texto 
+					contactos.add(temp);//Añade el contacto al Arraylist;
 				}
 			}
 		}
@@ -95,7 +106,12 @@ public class AgendaContactos {
 		return contactos;
 
 	}
-
+	
+	/**
+	 * Dada una letra devuelve un (ArrayList) con los contactos personales en esa letra.
+	 * @param letra en la cual se queire buscar
+	 * @return ArrayList con los contactos encontrados en la letra , null si la letra no esta en la agenda 
+	 */
 	public ArrayList<Personal> personalesEnLetra(char letra) { // Adrian
 
 		ArrayList<Personal> ray = new ArrayList<>(); // Crea arraylist vacio
@@ -114,19 +130,20 @@ public class AgendaContactos {
 		}
 		return ray; // Devuelve el arraylist
 	}
-	/*
-	 * Busca los contactos a los que hay que felicitar por su cumpleaños
-	 * @return un arrayList "cumple" con todos los contactos a los que hay que felicitar 
+	
+	/**
+	 * Devuelve un (ArrayList) con todos los contactos personales a los que hay que felicitar
+	 * @return ArrayList con los contactos a felicitar
 	 */
 	public List<Personal> felicitar() {
-		ArrayList<Personal> cumple = new ArrayList<Personal>();
+		List<Personal> cumple = new ArrayList<Personal>();//Crea un ArrayList vacio;
 		for(char key : agenda.keySet()) {
-			Iterator<Contacto> it = agenda.get(key).iterator();
+			Iterator<Contacto> it = agenda.get(key).iterator();//Crea un iterador
 			while(it.hasNext()) {
-				Contacto temp = it.next();
-				if(temp.getClass().equals(Personal.class)) {
-					Personal p = (Personal)temp;
-					if(p.esCumpleaños() == true) {
+				Contacto temp = it.next();//Guarda un contacto en la varible
+				if(temp.getClass().equals(Personal.class)) {// Verifica que la clase pertenezca a la clase Personal
+					Personal p = (Personal)temp;//Realiza un cast a la varible temp
+					if(p.esCumpleaños() == true) {//Comprueba que sea el cumpleaños de dicha persona
 						cumple.add(p);
 					}
 				}
@@ -134,26 +151,27 @@ public class AgendaContactos {
 		}
 		return cumple;
 	}
-	/*
-	 * Busca todos los contactos personales que se encuentran en la agenda
-	 * @return un Map "relacion" en el que aparecen solo contactos personales organizados por clave
-	 * añadiendo en la coleccion List sus nombres y apellidos
+	
+	/**
+	 * Devuelve un nuevo Map con todos los contactos personales ordenados por la relacio(clave) y
+	 * un List(valor asociado) de String del nombre completo
+	 * @return Nuevo Map(Relacion,list<String>) de los contactos personales
 	 */
 	public Map<Relacion,List<String>> personalesPorRelacion() {
-		TreeMap<Relacion,List<String>> relacion = new TreeMap<Relacion,List<String>>();
+		Map<Relacion,List<String>> relacion = new TreeMap<Relacion,List<String>>();//Crea un map vacio
 		for(char key : agenda.keySet()) {
-			Iterator<Contacto> it = agenda.get(key).iterator();
+			Iterator<Contacto> it = agenda.get(key).iterator();//Crea un Iterador
 			while(it.hasNext()) {
-				Contacto temp = it.next();
+				Contacto temp = it.next();//Guarda un contacto en la varibel
 				if(temp.getClass().equals(Personal.class)) {
-					Personal p = (Personal)temp;
-					if(relacion.containsKey(p.getRelacion()) == true) {
-						relacion.get(p.getRelacion()).add(p.getApellidos() + " " + p.getNombre());
+					Personal p = (Personal)temp;//Se realiza un cast 
+					if(relacion.containsKey(p.getRelacion()) == true) {//Verifica si la relacion(clave) ya existe en el Map
+						relacion.get(p.getRelacion()).add(p.getApellidos() + " " + p.getNombre());//Agrega el nombre completo en el List asociado a la clave
 					}
-					else {
-						List<String> nom = new ArrayList<String>();
-						nom.add(p.getApellidos() + " " + p.getNombre());
-						relacion.put(p.getRelacion(), nom);
+					else {//si no es el caso
+						List<String> nom = new ArrayList<String>();// Crea una nueva lista
+						nom.add(p.getApellidos() + " " + p.getNombre());//Agrega el nombre completo en el List
+						relacion.put(p.getRelacion(), nom);//Agrega la nueva clave con la lista creada anteriormente
 					}
 				}
 			}
@@ -161,9 +179,14 @@ public class AgendaContactos {
 		return relacion;
 	}
 
-	public ArrayList<Personal> personalesOrdenadosPorFechaNacimiento(char letra) { // Adrian
+	/**
+	 * Dada una letra devuelve los contactos personales ordenados por fecha de nacimiento(ascendente)
+	 * @param letra de los contactos a ordenar
+	 * @return List de contactos Personales ordenados por fecha de nacimiento
+	 */
+	public List<Personal> personalesOrdenadosPorFechaNacimiento(char letra) { // Adrian
 
-		ArrayList<Personal> ray = new ArrayList<>(); // Crea arraylist vacio
+		List<Personal> ray = new ArrayList<>(); // Crea arraylist vacio
 		if (agenda.containsKey(Character.toUpperCase(letra))) { // Comprueba si la letra existe entre las claves
 			for (Contacto con : agenda.get(Character.toUpperCase(letra))) { // Si existe, por cada contacto en dicha letra
 				if (  (con instanceof Personal) ) { // se comprueba que sea clase Personal

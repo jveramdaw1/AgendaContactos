@@ -103,7 +103,7 @@ public abstract class Contacto {
 	
 	@Override
 	public int hashCode() {
-		return nombre.hashCode() + apellidos.hashCode() + email.hashCode() * 11;
+		return nombre.hashCode() + email.hashCode() + telefono.hashCode() * 11;
 	}
 	
 	/**
@@ -170,6 +170,7 @@ public abstract class Contacto {
 	
 	/**
 	 * Representacion textual del contacto 
+	 * @return String representacion textual del contacto
 	 */
 	public String toString() {
 		if(this.getClass().equals(Personal.class)) {
