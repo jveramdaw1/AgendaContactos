@@ -6,7 +6,7 @@ package ut7.agenda.modelo;
  * Representacion de un conctacto de la agenda
  */ 
 
-public abstract class Contacto {
+public abstract class Contacto implements Comparable<Contacto>{
 	
 	/**
 	 * Atributos
