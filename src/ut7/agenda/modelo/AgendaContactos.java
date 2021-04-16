@@ -95,7 +95,7 @@ public class AgendaContactos {
 		return contactos;
 
 	}
-
+	private
 	public ArrayList<Personal> personalesEnLetra(char letra) { // Adrian
 
 		ArrayList<Personal> ray = new ArrayList<>(); // Crea arraylist vacio
@@ -111,7 +111,10 @@ public class AgendaContactos {
 		}
 		return ray; // Devuelve el arraylist
 	}
-
+	/*
+	 * Busca los contactos a los que hay que felicitar por su cumpleaños
+	 * @return un arrayList "cumple" con todos los contactos a los que hay que felicitar 
+	 */
 	public List<Personal> felicitar() {
 		ArrayList<Personal> cumple = new ArrayList<Personal>();
 		for(char key : agenda.keySet()) {
@@ -128,7 +131,11 @@ public class AgendaContactos {
 		}
 		return cumple;
 	}
-
+	/*
+	 * Busca todos los contactos personales que se encuentran en la agenda
+	 * @return un Map "relacion" en el que aparecen solo contactos personales organizados por clave
+	 * añadiendo en la coleccion List sus nombres y apellidos
+	 */
 	public Map<Relacion,List<String>> personalesPorRelacion() {
 		TreeMap<Relacion,List<String>> relacion = new TreeMap<Relacion,List<String>>();
 		for(char key : agenda.keySet()) {
