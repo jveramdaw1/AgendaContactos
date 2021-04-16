@@ -99,11 +99,14 @@ public class AgendaContactos {
 	public ArrayList<Personal> personalesEnLetra(char letra) { // Adrian
 
 		ArrayList<Personal> ray = new ArrayList<>(); // Crea arraylist vacio
-		if (agenda.containsKey(letra)) { // Comprueba si la letra existe entre las claves
-			for (Contacto con : agenda.get(letra)) { // Si existe, por cada contacto en dicha letra
-				if ( ! (con instanceof Personal) ) { // se comprueba que sea clase Personal
+		if (agenda.containsKey(Character.toUpperCase(letra))) { // Comprueba si la letra existe entre las claves
+			for (Contacto con : agenda.get(Character.toUpperCase(letra))) { // Si existe, por cada contacto en dicha letra
+				if (  (con instanceof Personal) ) { // se comprueba que sea clase Personal
 					ray.add((Personal) con); // Si lo es, se añade al arraylist
 				}
+			}
+			if (ray.isEmpty()) { // Si en la letra clave no detecta personales, devuelve null
+				return null; 
 			}
 		}
 		else { // Si clave no existe
@@ -161,9 +164,9 @@ public class AgendaContactos {
 	public ArrayList<Personal> personalesOrdenadosPorFechaNacimiento(char letra) { // Adrian
 
 		ArrayList<Personal> ray = new ArrayList<>(); // Crea arraylist vacio
-		if (agenda.containsKey(letra)) { // Comprueba si la letra existe entre las claves
-			for (Contacto con : agenda.get(letra)) { // Si existe, por cada contacto en dicha letra
-				if ( ! (con instanceof Personal) ) { // se comprueba que sea clase Personal
+		if (agenda.containsKey(Character.toUpperCase(letra))) { // Comprueba si la letra existe entre las claves
+			for (Contacto con : agenda.get(Character.toUpperCase(letra))) { // Si existe, por cada contacto en dicha letra
+				if (  (con instanceof Personal) ) { // se comprueba que sea clase Personal
 					ray.add((Personal) con); // Si lo es, se añade al arraylist
 				}
 			}
