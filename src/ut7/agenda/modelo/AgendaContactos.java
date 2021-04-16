@@ -41,7 +41,7 @@ public class AgendaContactos {
 	 * @param la letra de la coleccion Set que se busca
 	 * @return Un conjunto set de la letra buscada
 	 */
-	private
+	
 	public Set<Contacto> contactosEnLetra(char letra) {
 		Set <Contacto> contactos = new TreeSet<Contacto>();
 			contactos.addAll(agenda.get(letra));
@@ -52,7 +52,7 @@ public class AgendaContactos {
 	 * Cuenta todos los contactos que existen en la agenda
 	 * @return enumero de contactos que hay
 	 */
-	private
+	
 	public int totalContactos() {
 		int contador = 0;
 		for(char key : agenda.keySet()) {
@@ -79,7 +79,7 @@ public class AgendaContactos {
 	 * @param el string que sera buscado entre los contactos
 	 * @return los contactos que se coincidan con el texto
 	 */
-	private
+	
 	public List<Contacto> buscarContactos(String texto) {
 		ArrayList <Contacto> contactos = new ArrayList<>();
 		for(char key : agenda.keySet()) {
@@ -95,7 +95,7 @@ public class AgendaContactos {
 		return contactos;
 
 	}
-	private
+	
 	public ArrayList<Personal> personalesEnLetra(char letra) { // Adrian
 
 		ArrayList<Personal> ray = new ArrayList<>(); // Crea arraylist vacio
