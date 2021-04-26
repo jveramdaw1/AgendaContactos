@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -78,7 +79,7 @@ public class AgendaContactos {
 		for(char key : agenda.keySet()) {
 			salida += key + " (" + agenda.get(key).size() + " contacto/s)\n"
 					+ "---------------\n"; //Agrega a la cantidad total de contactos a la variable
-			Iterator<Contacto> it = agenda.get(key).iterator(); // crea un iterador
+			Iterator<Contacto> it = contactosEnLetra(key).iterator(); // crea un iterador
 			while(it.hasNext()) {
 				salida += it.next().toString() + "\n";//Usa el toString de contactos para agregarlo ala varible
 			}

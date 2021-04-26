@@ -18,7 +18,6 @@ public class AgendaIO{
 		for(int i = 0 ; i <obtenerLineasDatos().length; i++) {
 			Contacto contacto = parsearLinea(obtenerLineasDatos()[i]);
 			agenda.añadirContacto(contacto);
-			agenda.añadirContacto(contacto);
 		}
 	}
 	/*
@@ -30,7 +29,7 @@ public class AgendaIO{
 		String[] datosLinea = linea.split(",");
 		
 		String nombre = datosLinea[1].trim();
-		String apellidos = datosLinea[2].trim();
+		String apellidos = datosLinea[2].trim(); 
 		String telefono = datosLinea[3].trim();
 		String email = datosLinea[4].trim();
 		
